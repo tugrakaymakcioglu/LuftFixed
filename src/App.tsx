@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { ActionCatalog } from "./components/ActionCatalog";
+import { BrowserInstallGuide } from "./components/BrowserInstallGuide";
 import { ExecutionPanel } from "./components/ExecutionPanel";
 import { Sidebar } from "./components/Sidebar";
 import { SystemSummary } from "./components/SystemSummary";
-import { detectSystem, executeAction, loadActions } from "./lib/tauri";
+import { detectSystem, executeAction, hasTauriRuntime, loadActions } from "./lib/tauri";
 import type { ActionDefinition, DetectedSystem, QueueItem } from "./types";
 
 const allCategory = "Tümü";
@@ -11,6 +12,14 @@ const allCategory = "Tümü";
 const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 export default function App() {
+  if (!hasTauriRuntime()) {
+    return <BrowserInstallGuide />;
+  }
+
+  return <NativeApp />;
+}
+
+function NativeApp() {
   const [system, setSystem] = useState<DetectedSystem | null>(null);
   const [actions, setActions] = useState<ActionDefinition[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(allCategory);

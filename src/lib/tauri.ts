@@ -1,4 +1,4 @@
-import { invoke } from "@tauri-apps/api/core";
+import { invoke, isTauri } from "@tauri-apps/api/core";
 import { createBrowserExecution, createBrowserSystemProfile, loadCatalogActions } from "../data/catalog";
 import type { ActionDefinition, DetectedSystem, ExecutionResult } from "../types";
 
@@ -8,8 +8,8 @@ declare global {
   }
 }
 
-function hasTauriRuntime() {
-  return typeof window !== "undefined" && Boolean(window.__TAURI_INTERNALS__);
+export function hasTauriRuntime() {
+  return isTauri() || (typeof window !== "undefined" && Boolean(window.__TAURI_INTERNALS__));
 }
 
 export async function detectSystem(): Promise<DetectedSystem> {

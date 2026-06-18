@@ -49,6 +49,113 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.install-gate {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(8, 127, 122, 0.12), transparent 32%),
+    var(--bg);
+}
+
+.install-panel {
+  display: grid;
+  gap: 18px;
+  width: min(760px, 100%);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.install-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+}
+
+.install-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.install-kicker {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.install-copy h1 {
+  max-width: 680px;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.install-copy p:last-child {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.install-command {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.install-command > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.install-command code {
+  overflow-x: auto;
+  padding: 12px;
+  border-radius: 6px;
+  color: #d8fff8;
+  background: #10231f;
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.install-command button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--accent);
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.install-command button:hover {
+  background: var(--accent-strong);
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: 244px minmax(0, 1fr) 360px;

@@ -11,6 +11,7 @@
     "check": "tsc -b --pretty false",
     "verify": "npm run validate:catalog && npm run check && npm run build",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "install:linux": "bash scripts/install-linux.sh",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build"
