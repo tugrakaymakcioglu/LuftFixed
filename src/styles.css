@@ -156,6 +156,54 @@ button:disabled {
   background: var(--accent-strong);
 }
 
+.fatal-gate {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.fatal-panel {
+  display: grid;
+  gap: 10px;
+  width: min(760px, 100%);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.fatal-panel strong {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fatal-panel h1 {
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.fatal-panel p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.fatal-panel pre {
+  overflow: auto;
+  max-height: 240px;
+  margin: 0;
+  padding: 12px;
+  border-radius: 6px;
+  color: #ffe5e2;
+  background: #241312;
+  white-space: pre-wrap;
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: 244px minmax(0, 1fr) 360px;

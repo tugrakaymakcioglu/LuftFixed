@@ -6,8 +6,42 @@
     <title>LuftFixed</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main
+        style="
+          min-height: 100vh;
+          display: grid;
+          place-items: center;
+          padding: 24px;
+          box-sizing: border-box;
+          background: #eef3f1;
+          color: #18211f;
+          font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        "
+      >
+        <section
+          style="
+            width: min(760px, 100%);
+            padding: 22px;
+            border: 1px solid #d9e2df;
+            border-radius: 8px;
+            background: #fbfdfc;
+            box-shadow: 0 18px 45px rgba(25, 41, 37, 0.12);
+          "
+        >
+          <strong style="display: block; color: #2457a6; font-size: 12px; text-transform: uppercase">
+            LuftFixed başlatılıyor
+          </strong>
+          <h1 style="margin: 10px 0 8px; font-size: 28px; line-height: 1.2">
+            Uygulama arayüzü yükleniyor.
+          </h1>
+          <p style="margin: 0; color: #62706c; font-size: 15px; line-height: 1.55">
+            Bu mesaj uzun süre kalırsa JavaScript dosyası yüklenememiştir. En güncel sürümü kurmak için terminalde
+            README'deki tek komutlu kurulum satırını tekrar çalıştır.
+          </p>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
