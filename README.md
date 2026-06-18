@@ -27,13 +27,13 @@ LuftFixed, Linux'a geçmek isteyen son kullanıcılar için terminal zorunluluğ
 Linux terminaline aşağıdaki komutu yapıştır. Script dağıtımını otomatik algılar, gerekli bağımlılıkları kurar, LuftFixed'i native masaüstü uygulaması olarak paketler, sisteme kurar, başlat menüsü kaydını ve mümkünse masaüstü kısayolunu oluşturur.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/main/scripts/install-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/8e290e90e12fd689e0b2de656760c65dfb737ce1/scripts/install-linux.sh | bash
 ```
 
 `curl` yoksa:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/main/scripts/install-linux.sh | bash
+wget -qO- https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/8e290e90e12fd689e0b2de656760c65dfb737ce1/scripts/install-linux.sh | bash
 ```
 
 Aynı komut güncelleme için de tekrar çalıştırılabilir.

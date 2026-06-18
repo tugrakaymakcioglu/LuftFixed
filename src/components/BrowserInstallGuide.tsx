@@ -1,7 +1,8 @@
 import { Copy, MonitorCog, Terminal } from "lucide-react";
 import { useState } from "react";
 
-const installCommand = "curl -fsSL https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/main/scripts/install-linux.sh | bash";
+const installCommand =
+  "curl -fsSL https://raw.githubusercontent.com/tugrakaymakcioglu/LuftFixed/8e290e90e12fd689e0b2de656760c65dfb737ce1/scripts/install-linux.sh | bash";
 
 export function BrowserInstallGuide() {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "manual">("idle");
