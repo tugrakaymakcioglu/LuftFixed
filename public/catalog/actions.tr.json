@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "actions": [
+    {
+      "id": "system-update",
+      "title": "Sistemi güncelle",
+      "description": "Depoları yeniler, güvenlik yamalarını ve paket güncellemelerini uygular.",
+      "category": "Güncellemeler",
+      "impact": "Paketler güncellenir, bazı servisler yeniden başlatılabilir.",
+      "requiresAdmin": true,
+      "reversible": false,
+      "safety": "admin",
+      "estimatedDuration": "5-20 dk",
+      "tags": ["temel", "güvenlik"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["update"], "requiresAdmin": true },
+          { "program": "apt", "args": ["full-upgrade", "-y"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["upgrade", "--refresh", "-y"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-Syu", "--noconfirm"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["refresh"], "requiresAdmin": true },
+          { "program": "zypper", "args": ["update", "-y"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "install-flatpak",
+      "title": "Flatpak kur",
+      "description": "Dağıtımdan bağımsız uygulama kurulumu için Flatpak altyapısını hazırlar.",
+      "category": "Uygulamalar",
+      "impact": "Flatpak paket yöneticisi sisteme eklenir.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "safe",
+      "estimatedDuration": "1-3 dk",
+      "tags": ["uygulama", "evrensel"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "flatpak"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["install", "-y", "flatpak"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "flatpak"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "flatpak"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "enable-flathub",
+      "title": "Flathub deposunu ekle",
+      "description": "Popüler masaüstü uygulamalarına erişmek için Flathub kaynağını kullanıcı hesabına tanımlar.",
+      "category": "Uygulamalar",
+      "impact": "Flatpak uzak depo listesine Flathub eklenir.",
+      "requiresAdmin": false,
+      "reversible": true,
+      "safety": "safe",
+      "estimatedDuration": "< 1 dk",
+      "tags": ["flatpak", "depo"],
+      "commands": {
+        "apt": [
+          { "program": "flatpak", "args": ["remote-add", "--if-not-exists", "--user", "flathub", "https://flathub.org/repo/flathub.flatpakrepo"], "requiresAdmin": false }
+        ],
+        "dnf": [
+          { "program": "flatpak", "args": ["remote-add", "--if-not-exists", "--user", "flathub", "https://flathub.org/repo/flathub.flatpakrepo"], "requiresAdmin": false }
+        ],
+        "pacman": [
+          { "program": "flatpak", "args": ["remote-add", "--if-not-exists", "--user", "flathub", "https://flathub.org/repo/flathub.flatpakrepo"], "requiresAdmin": false }
+        ],
+        "zypper": [
+          { "program": "flatpak", "args": ["remote-add", "--if-not-exists", "--user", "flathub", "https://flathub.org/repo/flathub.flatpakrepo"], "requiresAdmin": false }
+        ]
+      }
+    },
+    {
+      "id": "install-browsers",
+      "title": "Tarayıcıları kur",
+      "description": "Firefox ve Chromium tabanlı tarayıcıları dağıtıma uygun paketlerle kurar.",
+      "category": "Tarayıcılar",
+      "impact": "Yeni tarayıcı paketleri sisteme yüklenir.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "safe",
+      "estimatedDuration": "3-8 dk",
+      "tags": ["internet", "günlük"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "firefox", "chromium"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["install", "-y", "firefox", "chromium"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "firefox", "chromium"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "MozillaFirefox", "chromium"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "install-codecs",
+      "title": "Medya codec paketlerini kur",
+      "description": "Video, ses ve yayın servisleri için gerekli yaygın medya bileşenlerini yükler.",
+      "category": "Uygulamalar",
+      "impact": "FFmpeg ve medya eklentileri sisteme eklenir.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "admin",
+      "estimatedDuration": "2-6 dk",
+      "tags": ["medya", "codec"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "ffmpeg", "gstreamer1.0-libav", "gstreamer1.0-plugins-good"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["install", "-y", "ffmpeg", "gstreamer1-plugins-good", "gstreamer1-plugins-bad-free"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "ffmpeg", "gst-libav", "gst-plugins-good"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "ffmpeg", "gstreamer-plugins-good", "gstreamer-plugins-bad"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "install-steam",
+      "title": "Steam kur",
+      "description": "Linux oyun deneyimi için Steam istemcisini dağıtıma göre kurar.",
+      "category": "Oyun",
+      "impact": "Steam ve gerekli çalışma zamanı bileşenleri yüklenir.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "safe",
+      "estimatedDuration": "2-8 dk",
+      "tags": ["oyun", "steam"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "steam"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["install", "-y", "steam"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "steam"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "steam"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "install-dev-tools",
+      "title": "Geliştirici araçlarını kur",
+      "description": "Git, curl, wget ve derleme araçlarını tek pakette hazırlar.",
+      "category": "Geliştirici",
+      "impact": "Temel geliştirme araçları ve derleyici paketleri eklenir.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "safe",
+      "estimatedDuration": "3-10 dk",
+      "tags": ["git", "build"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "build-essential", "git", "curl", "wget"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["groupinstall", "-y", "Development Tools"], "requiresAdmin": true },
+          { "program": "dnf", "args": ["install", "-y", "git", "curl", "wget"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "base-devel", "git", "curl", "wget"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "-t", "pattern", "devel_basis"], "requiresAdmin": true },
+          { "program": "zypper", "args": ["install", "-y", "git", "curl", "wget"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "clean-cache",
+      "title": "Paket önbelleğini temizle",
+      "description": "Kullanılmayan paketleri ve paket yöneticisi önbelleğini temizler.",
+      "category": "Temizlik",
+      "impact": "Disk alanı açılır; indirilen paket önbelleği silinebilir.",
+      "requiresAdmin": true,
+      "reversible": false,
+      "safety": "advanced",
+      "estimatedDuration": "1-4 dk",
+      "tags": ["disk", "bakım"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["autoremove", "-y"], "requiresAdmin": true },
+          { "program": "apt", "args": ["clean"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["autoremove", "-y"], "requiresAdmin": true },
+          { "program": "dnf", "args": ["clean", "all"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-Sc", "--noconfirm"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["clean", "--all"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "enable-firewall",
+      "title": "Güvenlik duvarını etkinleştir",
+      "description": "Dağıtıma uygun güvenlik duvarı servisini kurar ve açar.",
+      "category": "Güvenlik",
+      "impact": "Gelen bağlantılar güvenlik duvarı kurallarına tabi olur.",
+      "requiresAdmin": true,
+      "reversible": true,
+      "safety": "admin",
+      "estimatedDuration": "1-3 dk",
+      "tags": ["güvenlik", "firewall"],
+      "commands": {
+        "apt": [
+          { "program": "apt", "args": ["install", "-y", "ufw"], "requiresAdmin": true },
+          { "program": "ufw", "args": ["--force", "enable"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "systemctl", "args": ["enable", "--now", "firewalld"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "ufw"], "requiresAdmin": true },
+          { "program": "systemctl", "args": ["enable", "--now", "ufw"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "systemctl", "args": ["enable", "--now", "firewalld"], "requiresAdmin": true }
+        ]
+      }
+    },
+    {
+      "id": "nvidia-drivers",
+      "title": "NVIDIA sürücülerini hazırla",
+      "description": "Dağıtıma uygun NVIDIA sürücü kurulum komutlarını planlar.",
+      "category": "Sürücüler",
+      "impact": "Grafik sürücüsü değişebilir; yeniden başlatma gerekebilir.",
+      "requiresAdmin": true,
+      "reversible": false,
+      "safety": "advanced",
+      "estimatedDuration": "10-25 dk",
+      "tags": ["nvidia", "sürücü"],
+      "commands": {
+        "apt": [
+          { "program": "ubuntu-drivers", "args": ["autoinstall"], "requiresAdmin": true }
+        ],
+        "dnf": [
+          { "program": "dnf", "args": ["install", "-y", "akmod-nvidia"], "requiresAdmin": true }
+        ],
+        "pacman": [
+          { "program": "pacman", "args": ["-S", "--needed", "--noconfirm", "nvidia", "nvidia-utils"], "requiresAdmin": true }
+        ],
+        "zypper": [
+          { "program": "zypper", "args": ["install", "-y", "nvidia-driver-G06"], "requiresAdmin": true }
+        ]
+      }
+    }
+  ]
+}

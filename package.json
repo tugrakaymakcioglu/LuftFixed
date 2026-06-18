@@ -1,0 +1,33 @@
+{
+  "name": "luftfixed",
+  "version": "0.1.0",
+  "description": "A Linux helper tool for one-click system setup, updates, and safe task execution.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 1420",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "build": "tsc -b && vite build",
+    "check": "tsc -b --pretty false",
+    "verify": "npm run validate:catalog && npm run check && npm run build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "^1.61.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
