@@ -33,6 +33,32 @@ as_root() {
   fi
 }
 
+apt_package_available() {
+  apt-cache show "$1" >/dev/null 2>&1
+}
+
+install_apt_polkit() {
+  local packages=()
+
+  if apt_package_available pkexec; then
+    packages+=(pkexec)
+  fi
+
+  if apt_package_available polkitd; then
+    packages+=(polkitd)
+  fi
+
+  if [ "${#packages[@]}" -eq 0 ] && apt_package_available policykit-1; then
+    packages+=(policykit-1)
+  fi
+
+  if [ "${#packages[@]}" -gt 0 ]; then
+    as_root apt-get install -y "${packages[@]}"
+  else
+    warn "Polkit/pkexec paketi otomatik bulunamadi; yonetici yetkisi gerektiren islemler icin pkexec gerekebilir."
+  fi
+}
+
 require_linux() {
   [ "$(uname -s)" = "Linux" ] || die "Bu kurulum komutu Linux masaustu sistemleri icindir."
   [ -r /etc/os-release ] || die "/etc/os-release okunamadi; dagitim algilanamadi."
@@ -84,12 +110,12 @@ install_system_dependencies() {
         build-essential \
         nodejs \
         npm \
-        policykit-1 \
         libwebkit2gtk-4.1-dev \
         libxdo-dev \
         libssl-dev \
         libayatana-appindicator3-dev \
         librsvg2-dev
+      install_apt_polkit
       ;;
     dnf)
       as_root dnf check-update || true
