@@ -20,7 +20,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: http://asset.localhost https://asset.localhost; font-src 'self'; connect-src 'self' ipc: http://ipc.localhost https://ipc.localhost; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+      "csp": "default-src 'self' http://tauri.localhost https://tauri.localhost; script-src 'self' http://tauri.localhost https://tauri.localhost; style-src 'self' 'unsafe-inline' http://tauri.localhost https://tauri.localhost; img-src 'self' asset: http://asset.localhost https://asset.localhost http://tauri.localhost https://tauri.localhost; font-src 'self' http://tauri.localhost https://tauri.localhost; connect-src 'self' ipc: http://ipc.localhost https://ipc.localhost http://tauri.localhost https://tauri.localhost; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
     }
   },
   "bundle": {

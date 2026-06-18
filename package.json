@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 1420",
     "validate:catalog": "node scripts/validate-catalog.mjs",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/patch-tauri-html.mjs",
     "check": "tsc -b --pretty false",
     "verify": "npm run validate:catalog && npm run check && npm run build",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
